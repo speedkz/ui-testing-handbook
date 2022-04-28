@@ -83,4 +83,5 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
+          working-directory: cypress/integration/e2e
           start: npm start
