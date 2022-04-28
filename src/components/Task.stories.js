@@ -1,13 +1,20 @@
-import React from 'react';
-import { Task } from './Task';
+import React from "react";
+import { Task } from "./Task";
 
 export default {
   component: Task,
-  title: 'Task',
+  title: "Task",
   argTypes: {
-    onArchiveTask: { action: 'onArchiveTask' },
-    onTogglePinTask: { action: 'onTogglePinTask' },
-    onEditTitle: { action: 'onEditTitle' },
+    onArchiveTask: { action: "onArchiveTask" },
+    onTogglePinTask: { action: "onTogglePinTask" },
+    onEditTitle: { action: "onEditTitle" },
+  },
+  parameters: {
+    a11y: {
+      config: {
+        rules: [{ id: "listitem", enabled: false }],
+      },
+    },
   },
 };
 
@@ -16,27 +23,27 @@ const Template = (args) => <Task {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   task: {
-    id: '1',
-    title: 'Buy milk',
-    state: 'TASK_INBOX',
+    id: "1",
+    title: "Buy milk",
+    state: "TASK_INBOX",
   },
 };
 
 export const Pinned = Template.bind({});
 Pinned.args = {
   task: {
-    id: '2',
-    title: 'QA dropdown',
-    state: 'TASK_PINNED',
+    id: "2",
+    title: "QA dropdown",
+    state: "TASK_PINNED",
   },
 };
 
 export const Archived = Template.bind({});
 Archived.args = {
   task: {
-    id: '3',
-    title: 'Write schema for account menu',
-    state: 'TASK_ARCHIVED',
+    id: "3",
+    title: "Write schema for account menu",
+    state: "TASK_ARCHIVED",
   },
 };
 
@@ -45,8 +52,8 @@ const longTitleString = `This task's name is absurdly large. In fact, I think if
 export const LongTitle = Template.bind({});
 LongTitle.args = {
   task: {
-    id: '4',
+    id: "4",
     title: longTitleString,
-    state: 'TASK_INBOX',
+    state: "TASK_INBOX",
   },
 };
