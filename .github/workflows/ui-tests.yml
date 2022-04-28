@@ -61,7 +61,7 @@ jobs:
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
-          projectToken: 4655ed345491
+          projectToken: 0c6347f248df
           token: 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
   # Run user flow tests with Cypress
   user-flow:
