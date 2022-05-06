@@ -9,8 +9,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      {user?.token ? <InboxScreen /> : <LoginScreen onLogIn={logIn} />}
+      {!user?.token ? <InboxScreen /> : <LoginScreen onLogIn={logIn} />}
     </ChakraProvider>
   );
 }
