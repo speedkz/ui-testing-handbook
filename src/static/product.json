@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Buttons tweed blazer",
+    "star": 3,
+    "price": 59,
+    "image": "https://preview.colorlib.com/theme/ashion/img/product/product-1.jpg.webp"
+  },
+  {
+    "name": "Flowy striped skirt",
+    "star": 5,
+    "price": 59,
+    "image": "https://preview.colorlib.com/theme/ashion/img/product/product-2.jpg.webp"
+  },
+  {
+    "name": "Cotton T-Shirt",
+    "star": 5,
+    "price": 59,
+    "image": "https://preview.colorlib.com/theme/ashion/img/product/product-3.jpg.webp"
+  },
+  {
+    "name": "Slim striped pocket shirt",
+    "star": 5,
+    "price": 59,
+    "image": "https://preview.colorlib.com/theme/ashion/img/product/product-4.jpg.webp"
+  },
+  {
+    "name": "Fit micro corduroy shirt",
+    "star": 5,
+    "price": 59,
+    "image": "https://preview.colorlib.com/theme/ashion/img/product/product-5.jpg.webp"
+  },
+  {
+    "name": "Tropical Kimono",
+    "star": 5,
+    "price": 59,
+    "image": "https://preview.colorlib.com/theme/ashion/img/product/product-6.jpg.webp"
+  },
+  {
+    "name": "Contrasting sunglasses",
+    "star": 5,
+    "price": 59,
+    "image": "https://preview.colorlib.com/theme/ashion/img/product/product-7.jpg.webp"
+  },
+  {
+    "name": "Water resistant backpack",
+    "star": 5,
+    "price": 59,
+    "image": "https://preview.colorlib.com/theme/ashion/img/product/product-8.jpg.webp"
+  }
+]
