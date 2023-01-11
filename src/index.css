@@ -9,4 +9,15 @@
   .btn {
     @apply rounded-3xl text-white font-bold py-3 px-4;
   }
+  .base-card {
+    @apply rounded-lg bg-white p-4;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+  }
+  .base-menu {
+    @apply p-2 bg-white rounded w-fit;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+  }
+  .base-menu-item {
+    @apply flex items-center px-4 cursor-pointer hover:bg-secondary-background hover:text-primary-light text-primary-text text-sm rounded-sm h-10;
+  }
 }
