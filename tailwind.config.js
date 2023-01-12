@@ -16,6 +16,7 @@ module.exports = {
         "secondary-dark": "#E6E9FA",
         warning: "#EE8030",
         "highlight-background": "#F0F0F0",
+        muted: "#E9E9E9",
       },
       fontSize: {},
     },
