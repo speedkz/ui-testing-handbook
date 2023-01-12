@@ -15,10 +15,11 @@ export const parameters = {
     },
   },
   backgrounds: {
-    default: "white",
+    default: "highlight",
     values: [
       { name: "blue", value: "#2cc5d2" },
       { name: "white", value: "#fff" },
+      { name: "highlight", value: "#F0F0F0" },
     ],
   },
 };

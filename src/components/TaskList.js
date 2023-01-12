@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { VStack, Skeleton, Flex, Spacer } from "@chakra-ui/react";
 import { CheckIcon, StarIcon } from "@chakra-ui/icons";

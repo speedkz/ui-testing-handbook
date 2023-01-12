@@ -8,4 +8,8 @@ export const COLORS = {
   "primary-text-light": "#828282",
   "secondary-background": "#F3F4FC",
   "primary-light": "#6F74DD",
+  blue: "#E7F5FF",
+  "secondary-dark": "#E6E9FA",
+  warning: "#EE8030",
+  "highlight-background": "#F0F0F0",
 };
