@@ -17,6 +17,7 @@ module.exports = {
         warning: "#EE8030",
         "highlight-background": "#F0F0F0",
         muted: "#E9E9E9",
+        loading: "rgb(243, 244, 252, 0.5)",
       },
       fontSize: {},
     },

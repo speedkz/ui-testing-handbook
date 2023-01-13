@@ -43,7 +43,15 @@ Empty.args = {
   items: [],
 };
 
+export const Skeleton = Template.bind({});
+Skeleton.args = {
+  loading: true,
+  skeleton: true,
+};
+
 export const Loading = Template.bind({});
 Loading.args = {
+  ...Basic.args,
+  items: [],
   loading: true,
 };

@@ -25,5 +25,6 @@
     "jest",
     "src/setupTests.ts"
   ],
-  "types": ["typePatches"]
+  "types": ["typePatches"],
+  "include": ["src/components", "svg.d.ts"]
 }
