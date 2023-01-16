@@ -13,4 +13,5 @@ export const COLORS = {
   warning: "#EE8030",
   "highlight-background": "#F0F0F0",
   muted: "#E9E9E9",
+  "primary-dark": "#00227B",
 };
