@@ -19,6 +19,7 @@ module.exports = {
         muted: "#E9E9E9",
         loading: "rgb(243, 244, 252, 0.5)",
         "primary-dark": "#00227B",
+        black: "#343434",
       },
       fontSize: {},
     },

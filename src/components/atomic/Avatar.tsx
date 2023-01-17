@@ -9,7 +9,7 @@ export interface IAvatar {
 }
 
 export interface IAvatarGroup {
-  items: IAvatar[];
+  items?: IAvatar[];
 }
 
 export const Avatar = (props: IAvatar & IAvatarGroup) => {
@@ -23,13 +23,13 @@ export const Avatar = (props: IAvatar & IAvatarGroup) => {
   };
   return (
     <div
-      className={`flex items-center justify-center w-fit bg-secondary-background ${rounded} ${
-        circle ? "rounded-full overflow-hidden" : ""
+      className={`flex items-center justify-center bg-secondary-background ${rounded} ${
+        circle || items.length > 0 ? "rounded-full overflow-hidden" : ""
       } ${sizes[size]}`}
     >
       {Boolean(items.length) ? (
         <div
-          className={`w-full h-full grid gap-1 ${
+          className={`w-full h-full grid gap-1 relative ${
             items.length > 1 ? "grid-cols-2" : ""
           } ${items.length > 2 ? "grid-rows-2" : ""}`}
         >
@@ -64,7 +64,7 @@ export const GroupAvatar = ({
                 items.length === maxItems - 1 && index === 0
                   ? "row-span-2 "
                   : ""
-              } ${index >= maxItems}`}
+              }`}
             >
               <SingleAvatar
                 key={index}
@@ -74,7 +74,17 @@ export const GroupAvatar = ({
               />
             </div>
           )}
-          {index >= maxItems && <div className=" absolute"></div>}
+          {index >= maxItems && (
+            <div
+              className="absolute"
+              style={{
+                inset: "50% 0 0 50%",
+                backgroundColor: "rgb(52, 52, 52, 0.5)",
+              }}
+            >
+              <span className="text-white absolute top-[23.5%] right-[40%]">+{items.length - maxItems}</span>
+            </div>
+          )}
         </>
       ))}
     </>
