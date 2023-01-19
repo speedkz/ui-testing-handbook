@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
+import { HeaderLogo } from "components/atomic/LayoutHeader";
+import { apis } from "services";
+
 const LoginPage = ({ loading }) => {
+  const login = () => {
+    return apis.auth.login();
+  };
   return (
     <div
       style={{ background: "linear-gradient(90deg, #00B4DB 0%, #0083B0 100%)" }}
@@ -11,19 +17,12 @@ const LoginPage = ({ loading }) => {
         alt="vespa"
       />
       <div className="container xl:w-11/12 relative h-full mx-auto bg-white rounded-3xl flex">
-        <img
-          className="h-full order-last absolute right-0 xl:w-3/4"
-          src={require("assets/images/avatar_makata_vespa.png")}
-          alt="vespa"
-        />
-        <div className="w-auto flex items-center 2xl:p-32 xl:py-12 z-10">
+        <div className="grow flex items-center justify-center 2xl:p-32 p-6 z-10">
           <div className="flex flex-col w-96 xl:w-80">
-            <img
-              className="h-12 w-12 mb-3"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
-            />
-            <p className="font-extrabold text-3xl mb-4">Login</p>
+            <div className="mx-auto">
+              <HeaderLogo />
+              <p className="font-extrabold text-3xl mb-4">Login</p>
+            </div>
             <div className="mb-8">
               <label htmlFor="email" className="mb-2 text-sm text-gray-500">
                 Email
@@ -52,7 +51,9 @@ const LoginPage = ({ loading }) => {
             >
               Forgot Password?
             </Link>
-            <button className="btn bg-rose-700 mb-8">Sign in</button>
+            <button className="btn bg-rose-700 mb-8" onClick={login}>
+              Sign in
+            </button>
             <p className="text-sm text-gray-400 text-center mb-4">
               or continue with
             </p>
@@ -88,6 +89,13 @@ const LoginPage = ({ loading }) => {
               </span>
             </div>
           </div>
+        </div>
+        <div className="xl:w-2/3">
+          <img
+            className="h-full"
+            src={require("assets/images/avatar_makata_vespa.png")}
+            alt="vespa"
+          />
         </div>
       </div>
     </div>

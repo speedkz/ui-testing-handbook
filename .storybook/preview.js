@@ -3,6 +3,7 @@ import { initialize, mswDecorator } from "msw-storybook-addon";
 import { theme } from "../src/theme";
 import "index.css";
 import "styles/atomic/animation.css";
+import "plugins";
 
 initialize();
 

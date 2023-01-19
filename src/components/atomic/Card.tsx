@@ -7,6 +7,7 @@ export interface CardArgs {
   content?: string;
   width?: number | string;
   children: React.ReactNode;
+  className?: string;
 }
 
 export const Card = (props: CardArgs) => {
@@ -19,9 +20,10 @@ export const Card = (props: CardArgs) => {
     width = 495,
     action,
     children,
+    className,
   } = props;
   return (
-    <div className="base-card relative" style={{ width }}>
+    <div className={`base-card relative ${className}`} style={{ width }}>
       {children}
       {action && (
         <div className="cursor-pointer absolute -top-2 right-0">{action}</div>

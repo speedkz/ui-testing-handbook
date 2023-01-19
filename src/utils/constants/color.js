@@ -15,4 +15,11 @@ export const COLORS = {
   muted: "#E9E9E9",
   "primary-dark": "#00227B",
   black: "#343434",
+  "control-border": "#D0D0D0",
+  "control-disabled-border": "#C4C4C4",
+  "control-disabled-background": "#F5F5F5",
+  "fail-dark": "#DE5B5B",
+  "control-fail-outline": "#FFB0B0",
+  "success-dark": "#00B89F",
+  "control-success-outline": "#7FE5D7",
 };

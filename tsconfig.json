@@ -26,5 +26,5 @@
     "src/setupTests.ts"
   ],
   "types": ["typePatches"],
-  "include": ["src/components", "svg.d.ts"]
+  "include": ["src", "svg.d.ts"]
 }

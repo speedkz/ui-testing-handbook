@@ -42,7 +42,7 @@ export const LayoutHeader = (props: ILayoutHeader) => {
   );
 };
 
-const HeaderLogo = ({ theme }) => {
+export const HeaderLogo = ({ theme = "light" }) => {
   const images = {
     dark: <img src={DarkLogo} alt="logo" />,
     light: <img src={Logo} alt="logo" />,
