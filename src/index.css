@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-text: #4f4f4f;
+  --primary: #3949ab;
+  --secondary: #f3f4fc;
+  --success: #00ccb1;
+  --fail: #ff6262;
+  --primary-text: #4f4f4f;
+  --primary-text-dark: #343434;
+  --primary-text-light: #828282;
+  --secondary-background: #f3f4fc;
+  --primary-light: #6f74dd;
+  --blue: #e7f5ff;
+  --secondary-dark: #e6e9fa;
+  --warning: #ee8030;
+  --highlight-background: #f0f0f0;
+  --muted: #e9e9e9;
+  --primary-dark: #00227b;
+  --black: #343434;
+  --control-border: #d0d0d0;
+  --control-disabled-border: #c4c4c4;
+  --control-disabled-background: #f5f5f5;
+  --fail-dark: #de5b5b;
+  --control-fail-outline: #ffb0b0;
+  --success-dark: #00b89f;
+  --control-success-outline: #7fe5d7;
+}
+
 @layer components {
   .input-basic {
     @apply appearance-none rounded-3xl block border border-gray-300 px-5 py-4 placeholder-gray-500 text-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm;
@@ -14,7 +41,7 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
   }
   .base-menu {
-    @apply p-2 bg-white rounded w-fit;
+    @apply p-2 bg-white rounded absolute overflow-auto;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
   }
   .base-menu-item {
@@ -31,7 +58,7 @@
     @apply bg-secondary-background;
   }
   .base-input {
-    @apply rounded border border-control-border px-4 placeholder:text-primary-text-light
+    @apply w-full rounded border border-control-border px-4 placeholder:text-primary-text-light
      hover:border-primary focus:border-primary focus:outline-4 focus:outline-secondary-dark;
   }
   .base-input--success {
@@ -84,8 +111,4 @@
     line-height: 1.1875rem;
     font-style: italic;
   }
-}
-
-* {
-  color: #4f4f4f;
 }

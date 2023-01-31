@@ -1,39 +1,34 @@
 import { useEffect, useState } from "react";
 
-enum ButtonType {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  SUCCESS = "success",
-  FAIL = "fail",
-}
-
 export interface ButtonArgs {
-  label: string;
-  size: "tiny" | "small" | "normal" | "large";
-  type: ButtonType;
-  effect: "fill" | "ghost" | "transparent";
-  backgroundColor: string;
-  number: number;
-  disabled: boolean;
+  label?: string;
+  size?: "tiny" | "small" | "normal" | "large";
+  type?: "primary" | "secondary" | "success" | "fail";
+  effect?: "fill" | "ghost" | "transparent";
+  backgroundColor?: string;
+  number?: number;
+  disabled?: boolean;
+  onClick: any;
+  width?: string | number;
 }
 
 const TYPE_CLASS_NAMES = {
-  [ButtonType.PRIMARY]: {
+  primary: {
     fill: "bg-primary text-white",
     ghost: "border bg-white text-primary border-primary",
     transparent: "bg-white text-primary",
   },
-  [ButtonType.SECONDARY]: {
+  secondary: {
     fill: "text-primary-text bg-secondary",
-    ghost: "border bg-primary-text text-secondary border-secondary",
+    ghost: "border bg-white text-primary-text border-secondary-dark",
     transparent: "bg-primary-text text-secondary",
   },
-  [ButtonType.SUCCESS]: {
+  success: {
     fill: "bg-success text-white",
     ghost: "border text-success bg-white border-success",
     transparent: "text-success bg-white",
   },
-  [ButtonType.FAIL]: {
+  fail: {
     fill: "bg-fail text-white",
     ghost: "border text-fail bg-white border-fail",
     transparent: "text-fail bg-white",
@@ -41,10 +36,10 @@ const TYPE_CLASS_NAMES = {
 };
 
 const TYPE_CONTRAST_CLASS_NAMES = {
-  [ButtonType.PRIMARY]: "text-primary",
-  [ButtonType.SECONDARY]: "text-secondary",
-  [ButtonType.SUCCESS]: "text-success",
-  [ButtonType.FAIL]: "text-fail",
+  primary: "text-primary",
+  secondary: "text-secondary",
+  success: "text-success",
+  fail: "text-fail",
 };
 
 const SIZE_CLASS_NAMES = {
@@ -57,12 +52,14 @@ const SIZE_CLASS_NAMES = {
 export const Button = (props: ButtonArgs) => {
   const {
     label,
-    type = ButtonType.PRIMARY,
+    type = "primary",
     effect = "fill",
     disabled,
     size = "normal",
     backgroundColor,
     number,
+    onClick,
+    width,
   } = props;
 
   const [typeStyles, setTypeStyles] = useState(TYPE_CLASS_NAMES[type][effect]);
@@ -84,7 +81,8 @@ export const Button = (props: ButtonArgs) => {
   return (
     <div
       className={`flex justify-center items-center gap-2 rounded-[40px] px-4 py-0 w-fit text-sm cursor-pointer ${typeStyles} ${sizeStyles}`}
-      style={{ backgroundColor: bg }}
+      style={{ backgroundColor: bg, width }}
+      onClick={onClick}
     >
       <span>{label}</span>
       {Boolean(number) && <Quantity number={number} type={type} />}

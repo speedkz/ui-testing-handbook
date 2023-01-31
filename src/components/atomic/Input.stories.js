@@ -1,4 +1,4 @@
-import { Input } from "./Input";
+import { Input, PasswordInput as Password } from "./Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default {
@@ -31,3 +31,5 @@ BothIcon.args = {
   ...PrependIcon.args,
   ...AppendIcon.args,
 };
+
+export const PasswordInput = (args) => <Password {...args} />;
