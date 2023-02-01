@@ -10,7 +10,7 @@ export const axiosIntance = axios.create({
 });
 
 axiosIntance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config) => {
     return config;
   },
   (error) => {
