@@ -1,5 +1,4 @@
 import { Select } from "./Select";
-import axios from "axios";
 
 export default {
   title: "Design System/Atoms/Select",

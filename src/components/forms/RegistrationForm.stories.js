@@ -1,7 +1,7 @@
 import { RegistrationForm } from "./RegistrationForm";
 
 export default {
-  title: "Design System/Atoms/Registration Form",
+  title: "Design System/Form/Registration Form",
   component: RegistrationForm,
 };
 

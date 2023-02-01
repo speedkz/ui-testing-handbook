@@ -62,6 +62,7 @@ export const Input = (props: IInput) => {
           {prependIcon}
         </div>
       )}
+
       <input
         readOnly={readOnly}
         {...(register && register(name))}
@@ -76,7 +77,6 @@ export const Input = (props: IInput) => {
           success ? "base-input--success" : ""
         }`}
       />
-      {children}
       {appendIcon && (
         <div
           className={`flex items-center p-[11px] absolute right-0 inset-y-0 ${

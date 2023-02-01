@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { Button } from "./Button";
-import { Card } from "./Card";
-import { EFormItem, Form, RequiredLabel, TFormFields } from "./Form";
+import { Button } from "../atomic/Button";
+import { Card } from "../atomic/Card";
+import { EFormItem, Form, RequiredLabel, TFormFields } from "../atomic/Form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useCallback, useEffect, useState } from "react";
@@ -59,7 +59,6 @@ export const RegistrationForm = (props: IRegistrationForm) => {
       label: RequiredLabel("Country"),
       colSpan: 6,
       options: [],
-      multiple: true
     },
   };
   const [formFields, setFormFields] = useState(defaultformFields);
@@ -94,7 +93,7 @@ export const RegistrationForm = (props: IRegistrationForm) => {
       value: i + 1,
     }));
     setFormFields(temp);
-  }, [formFields]);
+  }, []);
 
   useEffect(() => {
     fetchCountries();
@@ -109,7 +108,7 @@ export const RegistrationForm = (props: IRegistrationForm) => {
       <Form
         register={register}
         control={control}
-        formField={formFields}
+        formFields={formFields}
         errors={errors}
       />
       <div className="flex gap-2 mt-8 justify-end">

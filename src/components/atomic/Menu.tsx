@@ -28,6 +28,7 @@ export const Menu = (props: MenuArgs) => {
     multiple,
   } = props;
   const [active, setActive] = useState(false);
+  const containerRef = useRef(null);
   const nodeRef = useRef(null);
 
   const handleTriggerMenu = () => {
@@ -51,7 +52,7 @@ export const Menu = (props: MenuArgs) => {
   }, []);
 
   return (
-    <div onClick={(e) => e.stopPropagation()}>
+    <div ref={containerRef} onClick={(e) => e.stopPropagation()}>
       <div onClick={handleTriggerMenu}>{container}</div>
       <CSSTransition
         classNames="base-menu"

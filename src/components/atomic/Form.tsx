@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input, PasswordInput } from "./Input";
 import { BasicDatePicker } from "./DatePicker";
 import { Select } from "./Select";
-import { useForm, Controller, UseFormRegister } from "react-hook-form";
+import { Controller, UseFormRegister } from "react-hook-form";
 
 const COLSPANS = [6, 12] as const;
 export interface IFormItem {
@@ -12,9 +12,10 @@ export interface IFormItem {
   options?: any[];
   multiple?: boolean;
   autocomplete?: boolean;
+  prependIcon?: any;
 }
 export interface IForm {
-  formField: TFormFields<any>;
+  formFields: TFormFields<any>;
   control?: any;
   register?: UseFormRegister<any>;
   errors: any;
@@ -38,9 +39,9 @@ export const COLSPAN_STYLES = {
 };
 
 export const Form = (props: IForm) => {
-  const { formField, control, register, errors } = props;
-  const items = Object.keys(formField).map((key) => ({
-    ...formField[key],
+  const { formFields, control, register, errors } = props;
+  const items = Object.keys(formFields).map((key) => ({
+    ...formFields[key],
     name: key,
   }));
   return (
