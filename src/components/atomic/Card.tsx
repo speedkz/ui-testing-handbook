@@ -6,7 +6,7 @@ export interface CardArgs {
   headerTitle?: string;
   content?: string;
   width?: number | string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 }
 

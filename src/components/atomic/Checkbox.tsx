@@ -12,6 +12,9 @@ export interface ICheckbox {
 
 export const Checkbox = (props: ICheckbox) => {
   const { label, checked, value, onChange, disabled } = props;
+  const handleChange = () => {
+    if (onChange) onChange(!checked);
+  };
   const id = useId();
   return (
     <div
@@ -25,11 +28,11 @@ export const Checkbox = (props: ICheckbox) => {
         className="hidden"
         id={id}
         type="checkbox"
-        onChange={onChange}
+        onChange={handleChange}
       />
       <div
         className={`w-[26px] h-[26px] flex items-center justify-center rounded hover:border-4 hover:border-secondary-dark`}
-        onClick={onChange}
+        onClick={handleChange}
       >
         {checked ? <CheckboxOn /> : <CheckboxOff />}
       </div>

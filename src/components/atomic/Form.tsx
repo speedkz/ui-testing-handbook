@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Input, PasswordInput } from "./Input";
 import { BasicDatePicker } from "./DatePicker";
 import { Select } from "./Select";
-import { Controller, UseFormRegister } from "react-hook-form";
+import { Controller, useForm, UseFormRegister } from "react-hook-form";
+import { Card, CardArgs } from "./Card";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const COLSPANS = [6, 12] as const;
 export interface IFormItem {
@@ -131,5 +133,54 @@ const Switcher = ({ onChange }: { onChange? }) => {
         </div>
       ))}
     </div>
+  );
+};
+
+export interface IBasicForm {
+  isValid?: boolean;
+  handleSubmit?: any;
+  getValues?: any;
+}
+
+export const BasicForm = ({
+  schema,
+  formFields,
+  Header,
+  Footer,
+  cardArgs,
+}: {
+  schema: any;
+  formFields: any;
+  Header?: any;
+  Footer: any;
+  cardArgs?: CardArgs;
+}) => {
+  const {
+    handleSubmit,
+    control,
+    getValues,
+    register,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onBlur",
+    resolver: yupResolver(schema),
+  });
+  return (
+    <Card {...cardArgs}>
+      {Header && <Header />}
+      <Form
+        register={register}
+        control={control}
+        formFields={formFields}
+        errors={errors}
+      />
+      {Footer && (
+        <Footer
+          getValues={getValues}
+          handleSubmit={handleSubmit}
+          isValid={isValid}
+        />
+      )}
+    </Card>
   );
 };

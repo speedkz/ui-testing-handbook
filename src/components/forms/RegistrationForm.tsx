@@ -1,7 +1,14 @@
 import { useForm } from "react-hook-form";
 import { Button } from "../atomic/Button";
 import { Card } from "../atomic/Card";
-import { EFormItem, Form, RequiredLabel, TFormFields } from "../atomic/Form";
+import {
+  BasicForm,
+  EFormItem,
+  Form,
+  IBasicForm,
+  RequiredLabel,
+  TFormFields,
+} from "../atomic/Form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useCallback, useEffect, useState } from "react";
@@ -69,17 +76,8 @@ export const RegistrationForm = (props: IRegistrationForm) => {
       email: yup.string().email().required(),
     })
     .required();
-  const {
-    handleSubmit,
-    control,
-    getValues,
-    register,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-  const handleClick = () => {
-    console.log(getValues());
+  const handleClick = (value) => {
+    console.log(value);
   };
 
   const fetchCountries = useCallback(async () => {
@@ -100,27 +98,35 @@ export const RegistrationForm = (props: IRegistrationForm) => {
   }, [fetchCountries]);
 
   return (
-    <Card className="px-6 py-8">
-      <div className="text-h4 mb-4 text-primary-text">Registration</div>
-      <div className="text-paragraph text-primary-text-light mb-8">
-        Enter your registration details
-      </div>
-      <Form
-        register={register}
-        control={control}
-        formFields={formFields}
-        errors={errors}
-      />
-      <div className="flex gap-2 mt-8 justify-end">
-        <Button onClick={handleSubmit(handleClick)} label="Ok" width={109} />
-        <Button
-          type="secondary"
-          effect="ghost"
-          onClick={handleClick}
-          label="Cancel"
-          width={112}
-        />
-      </div>
-    </Card>
+    <BasicForm
+      cardArgs={{ width: 520, className: "px-6 py-8" }}
+      schema={schema}
+      formFields={formFields}
+      Header={() => (
+        <>
+          <div className="text-h4 mb-4 text-primary-text">Registration</div>
+          <div className="text-paragraph text-primary-text-light mb-8">
+            Enter your registration details
+          </div>
+        </>
+      )}
+      Footer={({ handleSubmit, isValid }: IBasicForm) => (
+        <div className="flex gap-2 mt-8 justify-end">
+          <Button
+            onClick={handleSubmit(handleClick)}
+            label="Ok"
+            width={109}
+            disabled={!isValid}
+          />
+          <Button
+            type="secondary"
+            effect="ghost"
+            onClick={handleClick}
+            label="Cancel"
+            width={112}
+          />
+        </div>
+      )}
+    />
   );
 };

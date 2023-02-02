@@ -80,7 +80,9 @@ export const Button = (props: ButtonArgs) => {
 
   return (
     <div
-      className={`flex justify-center items-center gap-2 rounded-[40px] px-4 py-0 w-fit text-sm cursor-pointer ${typeStyles} ${sizeStyles}`}
+      className={`flex justify-center items-center gap-2 rounded-[40px] px-4 py-0 w-fit text-sm cursor-pointer ${typeStyles} ${sizeStyles} ${
+        disabled && "btn--disabled"
+      }`}
       style={{ backgroundColor: bg, width }}
       onClick={onClick}
     >

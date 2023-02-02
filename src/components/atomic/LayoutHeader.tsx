@@ -10,8 +10,8 @@ interface IProfile {
 }
 export interface ILayoutHeader {
   height?: number;
-  theme: "dark" | "light" | "xmas";
-  profile: IProfile;
+  theme?: "dark" | "light" | "xmas";
+  profile?: IProfile;
 }
 
 export const LayoutHeader = (props: ILayoutHeader) => {

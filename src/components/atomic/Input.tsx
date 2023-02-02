@@ -69,6 +69,7 @@ export const Input = (props: IInput) => {
         value={value}
         type={type}
         placeholder={placeholder}
+        aria-label={name}
         className={`base-input h-10 ${sizes[size]} ${
           prependIcon ? "pl-[38px]" : ""
         } ${appendIcon ? "pr-[38px]" : ""} ${

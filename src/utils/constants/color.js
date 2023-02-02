@@ -22,4 +22,5 @@ export const COLORS = {
   "control-fail-outline": "#FFB0B0",
   "success-dark": "#00B89F",
   "control-success-outline": "#7FE5D7",
+  icon: "#999999",
 };

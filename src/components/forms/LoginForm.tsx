@@ -3,7 +3,13 @@ import * as yup from "yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Card } from "../atomic/Card";
-import { EFormItem, Form, TFormFields } from "../atomic/Form";
+import {
+  BasicForm,
+  EFormItem,
+  Form,
+  IBasicForm,
+  TFormFields,
+} from "../atomic/Form";
 import { Logo } from "../atomic/Logo";
 import { Checkbox } from "../atomic/Checkbox";
 import { Button } from "../atomic/Button";
@@ -24,6 +30,7 @@ export const LoginForm = (props: ILoginForm) => {
       component: EFormItem.PASSWORD,
     },
   };
+  const [remember, setRemember] = useState(false);
   const [formFields, setFormFields] = useState(defaultformFields);
   const schema = yup
     .object({
@@ -31,42 +38,45 @@ export const LoginForm = (props: ILoginForm) => {
       password: yup.string().required(),
     })
     .required();
-  const {
-    handleSubmit,
-    control,
-    getValues,
-    register,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+
+  const submit = (value) => {
+    console.log(value);
+  };
 
   return (
-    <Card width={388} className="px-6 py-8">
-      <div className="flex flex-col items-stretch">
-        <div className="flex justify-center">
-          <Logo />
-        </div>
-        <div className="text-center text-sm text-primary-text my-8">
-          Enter your login details
-        </div>
-        <Form
-          register={register}
-          control={control}
-          formFields={formFields}
-          errors={errors}
-        />
-        <div className="flex justify-between items-center mt-4 mb-8">
-          <Checkbox label="Remember me" />
-          <div className="text-sm text-primary-light">Forgot password</div>
-        </div>
-        <Button
-          width="100%"
-          type="primary"
-          label="Log in"
-          onClick={handleSubmit}
-        />
-      </div>
-    </Card>
+    <BasicForm
+      cardArgs={{ width: 388, className: "px-6 py-8" }}
+      schema={schema}
+      formFields={formFields}
+      Header={() => (
+        <>
+          <div className="flex justify-center">
+            <Logo />
+          </div>
+          <div className="text-center text-sm text-primary-text my-8">
+            Enter your login details
+          </div>
+        </>
+      )}
+      Footer={({ handleSubmit, isValid }: IBasicForm) => (
+        <>
+          <div className="flex justify-between items-center mt-4 mb-8">
+            <Checkbox
+              label="Remember me"
+              checked={remember}
+              onChange={setRemember}
+            />
+            <div className="text-sm text-primary-light">Forgot password</div>
+          </div>
+          <Button
+            disabled={!isValid}
+            width="100%"
+            type="primary"
+            label="Log in"
+            onClick={handleSubmit(submit)}
+          />
+        </>
+      )}
+    />
   );
 };
