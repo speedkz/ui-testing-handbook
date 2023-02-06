@@ -71,9 +71,10 @@ export const LoginForm = (props: ILoginForm) => {
             disabled={!isValid}
             block
             type="primary"
-            label="Log in"
             onClick={handleSubmit(submit)}
-          />
+          >
+            Log in
+          </Button>
         </>
       )}
     />

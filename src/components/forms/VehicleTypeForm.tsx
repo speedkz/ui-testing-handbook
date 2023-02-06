@@ -43,13 +43,16 @@ export const VehicleTypeForm = (props: IVehicleTypeForm) => {
       schema={schema}
       Footer={({ handleSubmit, isValid }: IBasicForm) => (
         <div className="flex gap-2 mt-8 justify-end">
-          <Button type="text" label="Cancel" onClick={handleCancel} />
+          <Button type="text" onClick={handleCancel}>
+            Cancel
+          </Button>
           <Button
             disabled={!isValid}
             type="primary"
-            label="Submit"
             onClick={handleSubmit(submit)}
-          />
+          >
+            Submit
+          </Button>
         </div>
       )}
     />

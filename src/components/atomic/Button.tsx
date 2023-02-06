@@ -3,7 +3,6 @@ import { ButtonShape, ButtonType } from "antd/es/button";
 import { ButtonProps } from "antd/es/button/button";
 import { SizeType } from "antd/es/config-provider/SizeContext";
 export interface IButton extends ButtonProps {
-  label?: string;
   type?: ButtonType;
   icon?: React.ReactNode;
   shape?: ButtonShape;
@@ -24,10 +23,10 @@ export interface IButton extends ButtonProps {
 }
 
 export const Button = (props: IButton) => {
-  const { label, width, type = "primary" } = props;
+  const { children, width, type = "primary" } = props;
   return (
     <AButton {...props} type={type} style={{ width }}>
-      {label}
+      {children}
     </AButton>
   );
 };

@@ -119,16 +119,14 @@ export const RegistrationForm = (props: IRegistrationForm) => {
         <div className="flex gap-2 mt-8 justify-end">
           <Button
             onClick={handleSubmit(handleClick)}
-            label="Ok"
             width={109}
             disabled={!isValid}
-          />
-          <Button
-            type="text"
-            onClick={handleClick}
-            label="Cancel"
-            width={112}
-          />
+          >
+            Ok
+          </Button>
+          <Button type="text" onClick={handleClick} width={112}>
+            Cancel
+          </Button>
         </div>
       )}
     />
