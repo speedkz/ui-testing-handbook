@@ -1,4 +1,4 @@
-import { Skeleton } from "@chakra-ui/skeleton";
+import { Skeleton } from "antd";
 import Loading from "assets/images/atomic/loading.svg";
 interface IHeader {
   text: string;
@@ -18,9 +18,9 @@ export const Table = (props: ITable) => {
     <div className="base-table flex justify-center overflow-hidden">
       {loading && skeleton ? (
         <div className="flex flex-col gap-4 w-full p-4">
-          <Skeleton height={9} />
+          <Skeleton active />
           {[...Array(5).keys()].map((x) => (
-            <Skeleton height={5} key={x} />
+            <Skeleton active key={x} />
           ))}
         </div>
       ) : (

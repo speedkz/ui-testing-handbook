@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/icons": "^1.0.12",
-    "@chakra-ui/react": "^1.6.0",
     "@date-io/date-fns": "^2.16.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
@@ -21,6 +19,7 @@
     "@types/node": "^17.0.31",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.3",
+    "antd": "^5.1.7",
     "axios": "^1.2.6",
     "date-fns": "^2.29.3",
     "framer-motion": "^4",
@@ -44,7 +43,8 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "cypress": "cypress open",
-    "chromatic": "npx chromatic --project-token=0c6347f248df"
+    "chromatic": "npx chromatic --project-token=0c6347f248df",
+    "test-storybook": "test-storybook"
   },
   "eslintConfig": {
     "extends": [
@@ -79,12 +79,16 @@
     "@storybook/addon-a11y": "^6.5.0-beta.6",
     "@storybook/addon-actions": "^6.5.0-beta.6",
     "@storybook/addon-essentials": "^6.5.0-beta.6",
+    "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.0-beta.6",
     "@storybook/builder-webpack5": "^6.5.0-beta.6",
+    "@storybook/jest": "^0.0.10",
     "@storybook/manager-webpack5": "^6.5.0-beta.6",
     "@storybook/node-logger": "^6.5.0-beta.6",
     "@storybook/preset-create-react-app": "^4.1.0",
     "@storybook/react": "^6.5.0-beta.6",
+    "@storybook/test-runner": "^0.9.4",
+    "@storybook/testing-library": "^0.0.13",
     "@storybook/testing-react": "^1.2.4",
     "autoprefixer": "^10.4.7",
     "chromatic": "^6.5.4",
