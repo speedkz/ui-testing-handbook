@@ -4,16 +4,9 @@ import { useArgs } from "@storybook/client-api";
 export default {
   title: "Design System/Atoms/Pagination",
   component: Pagination,
-  argTypes: {
-    setPage: { action: "setPage" },
+  args: {
+    total: 500,
   },
-  decorators: [
-    (Story) => (
-      <div className="bg-white p-4 rounded-lg">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 const Template = (args) => {
@@ -25,9 +18,4 @@ const Template = (args) => {
 };
 
 export const Basic = Template.bind({});
-Basic.args = {
-  total: 1000,
-  pageSize: 20,
-  page: 0,
-  pageSizes: [20, 40, 80, 100],
-};
+Basic.args = {};

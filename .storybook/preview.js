@@ -2,6 +2,7 @@ import { initialize, mswDecorator } from "msw-storybook-addon";
 import "index.css";
 import "styles/atomic/animation.css";
 import "plugins";
+import 'antd/dist/reset.css';
 
 initialize();
 
@@ -14,7 +15,7 @@ export const parameters = {
     },
   },
   backgrounds: {
-    default: "blue",
+    default: "white",
     values: [
       { name: "blue", value: "#2cc5d2" },
       { name: "white", value: "#fff" },

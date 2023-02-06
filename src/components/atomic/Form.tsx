@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { Input, PasswordInput } from "./Input";
-import { BasicDatePicker } from "./DatePicker";
-import { Select } from "./Select";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect, useState } from "react";
 import { Controller, useForm, UseFormRegister } from "react-hook-form";
 import { Card, CardArgs } from "./Card";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { DatePicker } from "./Datepicker";
+import { Input, PasswordInput } from "./Input";
+import { RadioGroup } from "./Radio";
+import { SearchRemoteSelect, Select } from "./Select";
 
 const COLSPANS = [6, 12] as const;
 export interface IFormItem {
@@ -15,6 +16,8 @@ export interface IFormItem {
   multiple?: boolean;
   autocomplete?: boolean;
   prependIcon?: any;
+  fetchOptions?: any;
+  setOptions?: any;
 }
 export interface IForm {
   formFields: TFormFields<any>;
@@ -30,9 +33,10 @@ export type TFormFields<T> = {
 export enum EFormItem {
   INPUT = "INPUT",
   PASSWORD = "PASSWORD",
-  SWITCHER = "SWITCHER",
+  RADIO = "RADIO",
   DATE = "DATE",
   SELECT = "SELECT",
+  SELECT_SEARCH_REMOTE = "SELECT_SEARCH_REMOTE",
 }
 
 export const COLSPAN_STYLES = {
@@ -42,20 +46,26 @@ export const COLSPAN_STYLES = {
 
 export const Form = (props: IForm) => {
   const { formFields, control, register, errors } = props;
-  const items = Object.keys(formFields).map((key) => ({
-    ...formFields[key],
-    name: key,
-  }));
+  const [items, setItems] = useState([] as any[]);
+  useEffect(() => {
+    const temp = Object.keys(formFields).map((key) => ({
+      ...formFields[key],
+      name: key,
+    }));
+    setItems(temp);
+  }, [formFields]);
   return (
     <div className="grid grid-cols-12 gap-4">
       {items.map((item, i) => (
-        <FormItem
-          key={i}
-          {...item}
-          register={register}
-          control={control}
-          error={errors[item.name]}
-        ></FormItem>
+        <>
+          <FormItem
+            key={i}
+            {...item}
+            register={register}
+            control={control}
+            error={errors[item.name]}
+          ></FormItem>
+        </>
       ))}
     </div>
   );
@@ -75,16 +85,17 @@ export const FormItem = ({
   const formItems = {
     [EFormItem.INPUT]: Input,
     [EFormItem.PASSWORD]: PasswordInput,
-    [EFormItem.SWITCHER]: Switcher,
+    [EFormItem.RADIO]: RadioGroup,
     [EFormItem.SELECT]: Select,
-    [EFormItem.DATE]: BasicDatePicker,
+    [EFormItem.DATE]: DatePicker,
+    [EFormItem.SELECT_SEARCH_REMOTE]: SearchRemoteSelect,
   };
   const Component = formItems[componentName];
   return (
     <div className={`${COLSPAN_STYLES[colSpan]}`}>
       {label && (
         <div
-          className="text-xs mb-1"
+          className="text-xs mb-1 capitalize"
           dangerouslySetInnerHTML={{ __html: label }}
         ></div>
       )}
@@ -93,7 +104,12 @@ export const FormItem = ({
         control={control}
         rules={rules}
         render={({ field }) => (
-          <Component {...field} {...rest} register={register} />
+          <Component
+            {...field}
+            {...rest}
+            register={register}
+            status={Boolean(error) ? "error" : ""}
+          />
         )}
       />
       {error?.message && (
@@ -108,34 +124,6 @@ export const FormItem = ({
 export const RequiredLabel = (label) => {
   return `${label} <span class="text-fail">*</span>`;
 };
-
-const Switcher = ({ onChange }: { onChange? }) => {
-  const [value, setValue] = useState("");
-  const handleChange = (value) => {
-    setValue(value);
-    if (onChange) onChange(value);
-  };
-  let options = [
-    { text: "Male", value: "Male" },
-    { text: "Female", value: "Female" },
-  ];
-  return (
-    <div className="base-switcher">
-      {options.map((option) => (
-        <div
-          key={option.value}
-          className={`${
-            value === option.value ? "bg-primary-light text-white" : ""
-          }`}
-          onClick={() => handleChange(option.value)}
-        >
-          {option.text}
-        </div>
-      ))}
-    </div>
-  );
-};
-
 export interface IBasicForm {
   isValid?: boolean;
   handleSubmit?: any;

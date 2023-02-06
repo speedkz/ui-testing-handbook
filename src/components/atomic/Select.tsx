@@ -1,65 +1,74 @@
-import { ChevronDown } from "components/icons/ChevronDown";
-import { useCallback, useEffect, useState } from "react";
-import { Input } from "./Input";
-import { Menu, MenuArgs } from "./Menu";
+import { Select as ASelect, SelectProps, Spin } from "antd";
+import { debounce } from "lodash";
+import { useMemo, useRef, useState } from "react";
 
-export const Select = (props: MenuArgs) => {
+export interface ISelect extends SelectProps {
+  disabled?: boolean;
+  width?: number | string;
+  options: any[];
+  optionLabelProp?: string;
+  mode?: "multiple" | "tags";
+  status?: "error" | "warning";
+  defaultActiveFirstOption?: boolean;
+  showSearch?: boolean;
+  showArrow?: boolean;
+}
+export const Select = (props: ISelect) => {
   const {
-    options = [],
-    width = "fit-content",
-    value,
-    keyValue = "value",
-    keyText = "text",
-    onChange,
-    readOnly = true,
-    multiple,
+    optionLabelProp = "label",
+    width = "100%",
+    optionFilterProp = "label",
   } = props;
-  const [valueStr, setValueStr] = useState("");
-
-  const getValueStr = useCallback(
-    (key) => {
-      const option = options.find((x) => x[keyValue] === key);
-      return option ? option[keyText] : "";
-    },
-    [options, keyText, keyValue]
-  );
-
-  useEffect(() => {
-    if (!value) {
-      setValueStr("");
-      return;
-    }
-    setValueStr(getValueStr(value));
-  }, [value, getValueStr]);
-
-  const handleChange = (newValue) => {
-    onChange(
-      multiple
-        ? [...(Array.isArray(value) ? value : [value]), newValue]
-        : newValue
-    );
-  };
   return (
-    <>
-      <Menu
-        width={width}
-        multiple={multiple}
-        container={
-          <Input
-            value={valueStr}
-            width={width}
-            readOnly={readOnly}
-            appendIcon={<ChevronDown />}
-          >
-            {multiple &&
-              (Array.isArray(value) ? value : [value]).map((x) =>
-                getValueStr(x)
-              )}
-          </Input>
+    <ASelect
+      {...props}
+      style={{ width }}
+      optionLabelProp={optionLabelProp}
+      optionFilterProp={optionFilterProp}
+    />
+  );
+};
+
+export interface DebounceSelectProps<ValueType = any> {
+  fetchOptions: (search: string) => Promise<ValueType[]>;
+  debounceTimeout?: number;
+  setOptions: any;
+}
+
+export interface ISearchRemoteSelect extends DebounceSelectProps, ISelect {}
+
+export const SearchRemoteSelect = (props: ISearchRemoteSelect) => {
+  const { debounceTimeout = 800, setOptions, fetchOptions } = props;
+  const [fetching, setFetching] = useState(false);
+  const fetchRef = useRef(0);
+
+  const debounceFetcher = useMemo(() => {
+    const loadOptions = (value: string) => {
+      fetchRef.current += 1;
+      const fetchId = fetchRef.current;
+      setOptions([]);
+      setFetching(true);
+
+      fetchOptions(value).then((newOptions) => {
+        if (fetchId !== fetchRef.current) {
+          // for fetch callback order
+          return;
         }
-        options={options}
-        onChange={handleChange}
-      />
-    </>
+        setOptions(newOptions);
+        setFetching(false);
+      });
+    };
+
+    return debounce(loadOptions, debounceTimeout);
+  }, [fetchOptions, debounceTimeout, setOptions]);
+  return (
+    <Select
+      showSearch={true}
+      labelInValue
+      filterOption={false}
+      onSearch={debounceFetcher}
+      notFoundContent={fetching ? <Spin size="small" /> : null}
+      {...props}
+    />
   );
 };

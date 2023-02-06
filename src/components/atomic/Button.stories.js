@@ -5,21 +5,10 @@ export default {
   component: Button,
 };
 
-const Template = (args) => <Button {...args}></Button>;
+const Template = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   label: "Button",
-  size: "normal",
-  effect: "fill",
   type: "primary",
 };
-
-export const Secondary = Template.bind({});
-Secondary.args = { ...Primary.args, type: "secondary" };
-
-export const Success = Template.bind({});
-Success.args = { ...Primary.args, type: "success" };
-
-export const Fail = Template.bind({});
-Fail.args = { ...Primary.args, type: "fail" };

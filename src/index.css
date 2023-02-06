@@ -1,4 +1,3 @@
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -27,7 +26,7 @@
   --control-fail-outline: #ffb0b0;
   --success-dark: #00b89f;
   --control-success-outline: #7fe5d7;
-  --page-background: #F0F8FA;
+  --page-background: #f0f8fa;
 }
 
 @layer components {

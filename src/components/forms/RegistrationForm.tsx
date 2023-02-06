@@ -1,18 +1,15 @@
-import { useForm } from "react-hook-form";
+import axios from "axios";
+import { cloneDeep } from "lodash";
+import { useCallback, useEffect, useState } from "react";
+import * as yup from "yup";
 import { Button } from "../atomic/Button";
-import { Card } from "../atomic/Card";
 import {
   BasicForm,
   EFormItem,
-  Form,
   IBasicForm,
   RequiredLabel,
   TFormFields,
 } from "../atomic/Form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
 
 export interface IRegistrationForm {
   gender: string;
@@ -26,11 +23,28 @@ export interface IRegistrationForm {
 }
 
 export const RegistrationForm = (props: IRegistrationForm) => {
-  const [countries, setCountries] = useState([]);
+  const fetchCountries = useCallback(async (value) => {
+    try {
+      if (!value) return [];
+      const data = await (
+        await axios.get(`https://restcountries.com/v3.1/name/${value}`)
+      ).data;
+      return data.map((x) => ({
+        label: x.name.common,
+        value: x.name.common,
+      }));
+    } catch (err) {
+      return [];
+    }
+  }, []);
   const defaultformFields: TFormFields<IRegistrationForm> = {
     gender: {
-      component: EFormItem.SWITCHER,
+      component: EFormItem.RADIO,
       colSpan: 12,
+      options: [
+        { text: "Male", value: "male" },
+        { text: "Female", value: "female" },
+      ],
     },
     name: {
       component: EFormItem.INPUT,
@@ -62,13 +76,21 @@ export const RegistrationForm = (props: IRegistrationForm) => {
       colSpan: 6,
     },
     country: {
-      component: EFormItem.SELECT,
+      component: EFormItem.SELECT_SEARCH_REMOTE,
       label: RequiredLabel("Country"),
       colSpan: 6,
       options: [],
+      fetchOptions: fetchCountries,
+      setOptions: (value) => setCountries(value),
     },
   };
   const [formFields, setFormFields] = useState(defaultformFields);
+
+  const setCountries = (value) => {
+    const temp = cloneDeep(defaultformFields);
+    temp.country.options = value;
+    setFormFields(temp);
+  };
   const schema = yup
     .object({
       name: yup.string().required(),
@@ -79,23 +101,6 @@ export const RegistrationForm = (props: IRegistrationForm) => {
   const handleClick = (value) => {
     console.log(value);
   };
-
-  const fetchCountries = useCallback(async () => {
-    const data = await (
-      await axios.get("https://restcountries.com/v3.1/all")
-    ).data;
-    setCountries(data.map((x) => x.name.common));
-    const temp = { ...formFields };
-    temp.country.options = data.map((x, i) => ({
-      text: x.name.common,
-      value: i + 1,
-    }));
-    setFormFields(temp);
-  }, []);
-
-  useEffect(() => {
-    fetchCountries();
-  }, [fetchCountries]);
 
   return (
     <BasicForm
@@ -119,8 +124,7 @@ export const RegistrationForm = (props: IRegistrationForm) => {
             disabled={!isValid}
           />
           <Button
-            type="secondary"
-            effect="ghost"
+            type="text"
             onClick={handleClick}
             label="Cancel"
             width={112}

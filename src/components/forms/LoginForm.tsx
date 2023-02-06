@@ -1,19 +1,16 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { User } from "components/icons/User";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Card } from "../atomic/Card";
+import * as yup from "yup";
+import { Button } from "../atomic/Button";
+import { Checkbox } from "../atomic/Checkbox";
 import {
   BasicForm,
   EFormItem,
-  Form,
   IBasicForm,
+  RequiredLabel,
   TFormFields,
 } from "../atomic/Form";
 import { Logo } from "../atomic/Logo";
-import { Checkbox } from "../atomic/Checkbox";
-import { Button } from "../atomic/Button";
-import { User } from "components/icons/User";
 
 export interface ILoginForm {
   username: string;
@@ -23,10 +20,12 @@ export interface ILoginForm {
 export const LoginForm = (props: ILoginForm) => {
   const defaultformFields: TFormFields<ILoginForm> = {
     username: {
+      label: RequiredLabel("user name"),
       component: EFormItem.INPUT,
       prependIcon: <User />,
     },
     password: {
+      label: RequiredLabel("password"),
       component: EFormItem.PASSWORD,
     },
   };
@@ -70,7 +69,7 @@ export const LoginForm = (props: ILoginForm) => {
           </div>
           <Button
             disabled={!isValid}
-            width="100%"
+            block
             type="primary"
             label="Log in"
             onClick={handleSubmit(submit)}

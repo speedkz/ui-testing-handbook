@@ -1,57 +1,108 @@
 import { Table } from "./Table";
+import { Space, Tag } from "antd";
+import { useArgs } from "@storybook/client-api";
 
 export default {
   title: "Design System/Atoms/Table",
   component: Table,
+  args: {
+    columns: [
+      {
+        title: "Name",
+        dataIndex: "name",
+        key: "name",
+        render: (text) => <a>{text}</a>,
+      },
+      {
+        title: "Age",
+        dataIndex: "age",
+        key: "age",
+      },
+      {
+        title: "Address",
+        dataIndex: "address",
+        key: "address",
+      },
+      {
+        title: "Tags",
+        key: "tags",
+        dataIndex: "tags",
+        render: (_, { tags }) => (
+          <>
+            {tags.map((tag) => {
+              let color = tag.length > 5 ? "geekblue" : "green";
+              if (tag === "loser") {
+                color = "volcano";
+              }
+              return (
+                <Tag color={color} key={tag}>
+                  {tag.toUpperCase()}
+                </Tag>
+              );
+            })}
+          </>
+        ),
+      },
+      {
+        title: "Action",
+        key: "action",
+        render: (_, record) => (
+          <Space size="middle">
+            <a>Invite {record.name}</a>
+            <a>Delete</a>
+          </Space>
+        ),
+      },
+    ],
+    dataSource: [
+      {
+        key: "1",
+        name: "John Brown",
+        age: 32,
+        address: "New York No. 1 Lake Park",
+        tags: ["nice", "developer"],
+      },
+      {
+        key: "2",
+        name: "Jim Green",
+        age: 42,
+        address: "London No. 1 Lake Park",
+        tags: ["loser"],
+      },
+      {
+        key: "3",
+        name: "Joe Black",
+        age: 32,
+        address: "Sydney No. 1 Lake Park",
+        tags: ["cool", "teacher"],
+      },
+    ],
+  },
 };
 
 const Template = (args) => <Table {...args} />;
 export const Basic = Template.bind({});
+Basic.args = {};
 
-Basic.args = {
-  headers: [
-    { text: "Телефон", value: "phone" },
-    { text: "ФИО", value: "name" },
-    { text: "Адрес", value: "address" },
-  ],
-  items: [
-    {
-      phone: "+7495-123-45-67",
-      name: "James L.",
-      address: "32 St Margarets St. Hendersonville, NC 28792",
+const SelectionTemplate = (args) => {
+  const [_, updateArgs] = useArgs();
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(
+        `selectedRowKeys: ${selectedRowKeys}`,
+        "selectedRows: ",
+        selectedRows
+      );
     },
-    {
-      phone: "+7495-123-65-47",
-      name: "Meriden O.",
-      address: "32 St Margarets St. Hendersonville, NC 28792",
-    },
-    {
-      phone: "+7495-321-45-67",
-      name: "John B.",
-      address: "32 St Margarets St. Hendersonville, NC 28792",
-    },
-    {
-      phone: "+7495-765-43-21",
-      name: "Bruno L.",
-      address: "32 St Margarets St. Hendersonville, NC 28792",
-    },
-  ],
+    getCheckboxProps: (record) => ({
+      disabled: record.age > 40, // Column configuration not to be checked
+      name: record.name,
+    }),
+  };
+  return <Table {...args} rowSelection={rowSelection} />;
+};
+export const Selection = SelectionTemplate.bind({});
+Selection.args = {
+  selectionType: "checkbox",
 };
 
-export const Empty = Template.bind({});
-Empty.args = {
-  items: [],
-};
-
-export const Skeleton = Template.bind({});
-Skeleton.args = {
-  loading: true,
-  skeleton: true,
-};
-
-export const Loading = Template.bind({});
-Loading.args = {
-  ...Basic.args,
-  items: [],
-  loading: true,
-};
