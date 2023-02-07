@@ -9,7 +9,7 @@ import { SearchRemoteSelect, Select } from "./Select";
 
 const COLSPANS = [6, 12] as const;
 export interface IFormItem {
-  component: string;
+  component: keyof typeof EFormItem;
   label?: string;
   colSpan?: typeof COLSPANS[number];
   options?: any[];
@@ -51,6 +51,7 @@ export const Form = (props: IForm) => {
     const temp = Object.keys(formFields).map((key) => ({
       ...formFields[key],
       name: key,
+      "data-testid": key,
     }));
     setItems(temp);
   }, [formFields]);

@@ -13,13 +13,14 @@ export interface IVehicleTypeForm {
   name: string;
 }
 
+export const defaultformFields: TFormFields<IVehicleTypeForm> = {
+  name: {
+    component: EFormItem.INPUT,
+    label: RequiredLabel("Name"),
+  },
+};
+
 export const VehicleTypeForm = (props: IVehicleTypeForm) => {
-  const defaultformFields: TFormFields<IVehicleTypeForm> = {
-    name: {
-      component: EFormItem.INPUT,
-      label: RequiredLabel("Name"),
-    },
-  };
   const [formFields, setFormFields] = useState(defaultformFields);
   const schema = yup
     .object({
@@ -50,6 +51,7 @@ export const VehicleTypeForm = (props: IVehicleTypeForm) => {
             disabled={!isValid}
             type="primary"
             onClick={handleSubmit(submit)}
+            data-testid="btn-submit"
           >
             Submit
           </Button>

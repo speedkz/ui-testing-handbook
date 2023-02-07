@@ -16,14 +16,20 @@ export const Radio = (props: IRadio) => {
 export const RadioGroup = (props: IRadio) => {
   const { onChange, value, direction, options = [] } = props;
   return (
-    <ARadio.Group onChange={(e) => onChange(e.target.value)} value={value}>
-      <Space direction={direction}>
-        {options.map((option) => (
-          <Radio key={option.value} value={option.value}>
-            {option.text}
-          </Radio>
-        ))}
-      </Space>
-    </ARadio.Group>
+    <>
+      <ARadio.Group
+        data-testid={props["data-testid"]}
+        onChange={(e) => onChange(e.target.value)}
+        value={value}
+      >
+        <Space direction={direction}>
+          {options.map((option) => (
+            <Radio key={option.value} value={option.value}>
+              {option.text}
+            </Radio>
+          ))}
+        </Space>
+      </ARadio.Group>
+    </>
   );
 };

@@ -1,19 +1,16 @@
 import { notification } from "antd";
-import { Button } from "./Button";
-export const Notification = () => {
+import { forwardRef, useImperativeHandle } from "react";
+export const Notification = forwardRef((props, ref) => {
   const key = "updatable";
   const [api, contextHolder] = notification.useNotification();
-  const handleClick = () => {
-    api.open({
-      key,
-      message: "Notification Title",
-      description: "description.",
-    });
-  };
-  return (
-    <>
-      {contextHolder}
-      <Button onClick={handleClick}>Open the notification box</Button>
-    </>
-  );
-};
+  useImperativeHandle(ref, () => ({
+    notify() {
+      api.success({
+        key,
+        message: "Notification Title",
+        description: "description.",
+      });
+    },
+  }));
+  return <>{contextHolder}</>;
+});
