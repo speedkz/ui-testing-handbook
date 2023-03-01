@@ -1,18 +1,24 @@
+import { Card } from "components/atomic/Card";
 import { LayoutHeader } from "components/atomic/LayoutHeader";
-import { Sidebar } from "components/atomic/Sidebar";
+import { BaseSidebar } from "components/atomic/Sidebar";
+import "./layout.scss";
 
 export interface ILayout {
-  Page?: any;
+  children?: any;
 }
 
 export const Layout = (props: ILayout) => {
-  const { Page } = props;
+  const { children } = props;
   return (
-    <div className="w-screen h-screen flex flex-col">
-      <LayoutHeader />
-      <div className="flex grow">
-        <Sidebar />
-        <div className="bg-page-background grow p-8">{Page}</div>
+    <div className="layout__container">
+      <div className="header">
+        <LayoutHeader />
+      </div>
+      <div className="sidebar">
+        <BaseSidebar width={"100%"} />
+      </div>
+      <div className="main bg-page-background">
+        <Card>{children}</Card>
       </div>
     </div>
   );

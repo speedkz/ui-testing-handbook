@@ -9,7 +9,7 @@ import {
   EFormItem,
   IBasicForm,
   RequiredLabel,
-  TFormFields
+  TFormFields,
 } from "../atomic/Form";
 
 export interface IRegistrationForm {
@@ -122,7 +122,7 @@ export const RegistrationForm = (props: IRegistrationForm) => {
     <>
       <Notification ref={notiRef} />
       <BasicForm
-        cardArgs={{ width: 520, className: "px-6 py-8" }}
+        cardArgs={{ width: 520 }}
         schema={schema}
         formFields={formFields}
         Header={() => (

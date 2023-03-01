@@ -1,0 +1,21 @@
+$sidebar-width: 300px;
+$header-height: 64px;
+
+.layout__container {
+  display: grid;
+  height: 100vh;
+  grid-template-areas: "sidebar header" "sidebar main";
+  grid-template-columns: $sidebar-width auto;
+  grid-template-rows: $header-height auto;
+}
+.sidebar {
+  grid-area: sidebar;
+  padding-top: $header-height;
+}
+.header {
+  grid-area: header;
+}
+.main {
+  grid-area: main;
+  padding: 32px;
+}

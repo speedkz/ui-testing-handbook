@@ -3,7 +3,7 @@
 
 :root {
   --primary-text: #4f4f4f;
-  --primary: #3949ab;
+  --primary: #6366f1;
   --secondary: #f3f4fc;
   --success: #00ccb1;
   --fail: #ff6262;
@@ -26,115 +26,20 @@
   --control-fail-outline: #ffb0b0;
   --success-dark: #00b89f;
   --control-success-outline: #7fe5d7;
-  --page-background: #f0f8fa;
+  --page-background: #F3F4F6;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0
 }
 
 @layer components {
-  .input-basic {
-    @apply appearance-none rounded-3xl block border border-gray-300 px-5 py-4 placeholder-gray-500 text-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm;
-  }
-  .btn {
-    @apply rounded-3xl text-white font-bold py-3 px-4;
-  }
-  .btn--disabled {
-    @apply pointer-events-none !bg-muted;
-  }
   .base-card {
     @apply rounded-lg bg-white p-4;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
   }
-  .base-menu {
-    @apply p-2 bg-white rounded absolute overflow-auto;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-  }
-  .base-menu-item {
-    @apply flex items-center px-4 cursor-pointer hover:bg-secondary-background hover:text-primary-light text-primary-text text-sm rounded-sm h-10;
-  }
-  .base-table {
-    @apply bg-white rounded-lg w-full;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-  }
-  .base-table tbody tr {
-    @apply border-b border-muted;
-  }
-  .base-table tbody tr:hover td {
-    @apply bg-secondary-background;
-  }
-  .base-input {
-    @apply w-full rounded border border-control-border px-4 placeholder:text-primary-text-light
-     hover:border-primary focus:border-primary focus:outline-4 focus:outline-secondary-dark;
-  }
-  .base-input--success {
-    @apply border-success-dark hover:border-success-dark focus:border-success-dark focus:outline-4 focus:outline-control-success-outline;
-  }
-  .base-input--error {
-    @apply border-fail-dark hover:border-fail-dark focus:border-fail-dark focus:outline-4 focus:outline-control-fail-outline;
-  }
-  .base-input--disabled {
-    @apply border-control-disabled-border bg-control-disabled-background 
-    text-control-disabled-border placeholder:text-control-disabled-border;
-  }
-  .base-switcher {
-    @apply flex rounded-lg border border-control-border w-fit overflow-hidden cursor-pointer;
-  }
-  .base-switcher > div:not(:last-child) {
-    @apply border-r border-control-border;
-  }
-  .base-switcher > div {
-    @apply px-3 py-2;
-  }
-  .base-sidebar {
-    @apply bg-white flex flex-col h-full items-start transition-all;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition-duration: 0.3s;
-  }
-  .base-sidebar__item {
-    @apply flex flex-wrap overflow-hidden w-full h-[52px] items-center cursor-pointer pr-4;
-  }
-  .base-sidebar__item--active,
-  .base-sidebar__item:hover {
-    @apply bg-secondary-dark;
-    box-shadow: inset 4px 0px 0px var(--primary);
-  }
-  .base-sidebar__item--active,
-  .base-sidebar__item:hover path {
-    fill: var(--primary);
-  }
-  .base-sidebar__item--active + .base-sidebar__item__subitems {
-    box-shadow: inset 4px 0px 0px var(--primary);
-  }
-  .base-sidebar__item__subitems {
-    @apply w-full overflow-hidden transition-all bg-white;
-    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition-duration: 0.3s;
-  }
-  .base-sidebar--collapsed .base-sidebar__item {
-    @apply px-0;
-  }
-  .base-sidebar--collapsed .base-sidebar__item__subitems {
-    @apply absolute top-0 left-[52px] w-auto shadow-none;
-  }
-  .base-sidebar--collapsed
-    .base-sidebar__item__subitems
-    .base-sidebar__item__wrapper {
-    @apply relative min-w-max;
-  }
-  .base-sidebar--collapsed .base-sidebar__item__subitems .base-sidebar__item {
-    @apply pl-0 pr-4 w-full flex-nowrap;
-  }
-  .base-sidebar--collapsed .base-sidebar__item__hint {
-    @apply absolute top-0 right-0 text-[10px] bg-secondary-background;
-  }
-  .base-sidebar__item__wrapper {
-    @apply relative w-full;
-  }
-  .base-sidebar__item__subitems .base-sidebar__item {
-    @apply pl-[38px];
-  }
-  .base-sidebar__item__hint {
-    @apply text-xs text-primary rounded bg-secondary-dark px-2 py-1;
-  }
+  
   .text-h1 {
     font-size: 3.5rem;
     line-height: 4.75rem;

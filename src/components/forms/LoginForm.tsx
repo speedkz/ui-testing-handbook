@@ -52,7 +52,7 @@ export const LoginForm = (props: ILoginForm) => {
     <>
       <Notification ref={notiRef} />
       <BasicForm
-        cardArgs={{ width: 388, className: "px-6 py-8" }}
+        cardArgs={{ width: 388 }}
         schema={schema}
         formFields={formFields}
         Header={() => (

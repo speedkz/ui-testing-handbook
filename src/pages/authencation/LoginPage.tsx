@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { HeaderLogo } from "components/atomic/LayoutHeader";
 import { apis } from "services";
 
 const LoginPage = ({ loading }) => {
@@ -20,7 +19,7 @@ const LoginPage = ({ loading }) => {
         <div className="grow flex items-center justify-center 2xl:p-32 p-6 z-10">
           <div className="flex flex-col w-96 xl:w-80">
             <div className="mx-auto">
-              <HeaderLogo />
+              {/* <HeaderLogo /> */}
               <p className="font-extrabold text-3xl mb-4">Login</p>
             </div>
             <div className="mb-8">

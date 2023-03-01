@@ -41,7 +41,7 @@ const handleSelectRemoteOptions = async (canvas, id) => {
   const input = getByRole(element, "combobox");
   await sleep(1000);
   await userEvent.type(input, "vi", { delay: 100 });
-
+  await sleep(2000);
   await waitFor(() => {
     expect(
       document.querySelector(
@@ -73,6 +73,6 @@ export const submitForm = async (canvas) => {
   const submitButton = canvas.getByTestId("btn-submit", {
     selector: "button",
   });
-  expect(submitButton).toBeInTheDocument()
+  expect(submitButton).toBeInTheDocument();
   await userEvent.click(submitButton);
 };
