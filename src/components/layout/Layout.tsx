@@ -17,8 +17,8 @@ export const Layout = (props: ILayout) => {
       <div className="sidebar">
         <BaseSidebar width={"100%"} />
       </div>
-      <div className="main bg-page-background">
-        <Card>{children}</Card>
+      <div id="main" className="main bg-page-background">
+        <Card className="max-h-full">{children}</Card>
       </div>
     </div>
   );

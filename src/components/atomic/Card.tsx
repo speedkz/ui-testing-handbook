@@ -1,4 +1,5 @@
 import { Card as ACard, CardProps } from "antd";
+import "./card.css";
 
 export interface CardArgs extends CardProps {
   width?: string | number;

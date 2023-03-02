@@ -1,7 +1,11 @@
 import { Table as ATable } from "antd";
-import type { ColumnsType, TablePaginationConfig } from "antd/es/table";
+import type {
+  ColumnsType,
+  TablePaginationConfig,
+  TableProps,
+} from "antd/es/table";
 
-export interface ITable {
+export interface ITable extends TableProps<any> {
   columns: ColumnsType<any>;
   dataSource: any[];
   rowSelection?: any;

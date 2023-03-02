@@ -1,4 +1,4 @@
-import { Button } from "./Button";
+import { Button, ButtonClosePanel } from "./Button";
 
 export default {
   title: "Design System/Atoms/Button",
@@ -12,3 +12,6 @@ Default.args = {
   children: "Button",
   type: "primary",
 };
+
+const TemplateClosePanel = (args) => <ButtonClosePanel {...args} />;
+export const ClosePanel = TemplateClosePanel.bind({})
