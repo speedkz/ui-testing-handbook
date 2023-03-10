@@ -3,6 +3,7 @@ import { FC, LazyExoticComponent, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import planRoutes from "./plan";
 import shippingOrderRoutes from "./shipping-order";
+import authRoutes from "./auth";
 
 export const Loadable = (Component: LazyExoticComponent<FC>) => (props) => {
   return (
@@ -12,7 +13,11 @@ export const Loadable = (Component: LazyExoticComponent<FC>) => (props) => {
   );
 };
 
-const router = createBrowserRouter([...planRoutes, ...shippingOrderRoutes]);
+const router = createBrowserRouter([
+  ...authRoutes,
+  ...planRoutes,
+  ...shippingOrderRoutes,
+]);
 export const AppRoutes = () => {
   return <RouterProvider router={router} />;
 };

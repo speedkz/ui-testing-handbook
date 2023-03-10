@@ -1,16 +1,11 @@
 import axios from "axios";
+import { TFormFields, EFormItem, RequiredLabel } from "build-system/form";
+import { BasicForm, IBasicForm } from "components/atomic/Form";
 import { Notification } from "components/atomic/Notification";
 import { cloneDeep } from "lodash";
 import { useCallback, useRef, useState } from "react";
 import * as yup from "yup";
 import { Button } from "../atomic/Button";
-import {
-  BasicForm,
-  EFormItem,
-  IBasicForm,
-  RequiredLabel,
-  TFormFields,
-} from "../atomic/Form";
 
 export interface IRegistrationForm {
   gender: string;

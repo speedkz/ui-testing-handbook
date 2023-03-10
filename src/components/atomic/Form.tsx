@@ -1,48 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { COLSPAN_STYLES, EFormItem, IForm, IFormItem } from "build-system/form";
 import { useEffect, useState } from "react";
-import { Controller, useForm, UseFormRegister } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Card, CardArgs } from "./Card";
 import { DatePicker } from "./Datepicker";
 import { Input, PasswordInput } from "./Input";
 import { RadioGroup } from "./Radio";
 import { SearchRemoteSelect, Select } from "./Select";
-
-const COLSPANS = [6, 12] as const;
-export interface IFormItem {
-  component: keyof typeof EFormItem;
-  label?: string;
-  colSpan?: typeof COLSPANS[number];
-  options?: any[];
-  multiple?: boolean;
-  autocomplete?: boolean;
-  prependIcon?: any;
-  fetchOptions?: any;
-  setOptions?: any;
-}
-export interface IForm {
-  formFields: TFormFields<any>;
-  control?: any;
-  register?: UseFormRegister<any>;
-  errors: any;
-}
-
-export type TFormFields<T> = {
-  [key in keyof T]: IFormItem;
-};
-
-export enum EFormItem {
-  INPUT = "INPUT",
-  PASSWORD = "PASSWORD",
-  RADIO = "RADIO",
-  DATE = "DATE",
-  SELECT = "SELECT",
-  SELECT_SEARCH_REMOTE = "SELECT_SEARCH_REMOTE",
-}
-
-export const COLSPAN_STYLES = {
-  6: "col-span-6",
-  12: "col-span-12",
-};
 
 export const Form = (props: IForm) => {
   const { formFields, control, register, errors } = props;
@@ -122,9 +86,6 @@ export const FormItem = ({
   );
 };
 
-export const RequiredLabel = (label) => {
-  return `${label} <span class="text-fail">*</span>`;
-};
 export interface IBasicForm {
   isValid?: boolean;
   handleSubmit?: any;

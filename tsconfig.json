@@ -14,7 +14,8 @@
     "noImplicitThis": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "types": ["cypress", "node"]
   },
   "exclude": [
     "node_modules",
@@ -26,5 +27,5 @@
     "src/setupTests.ts"
   ],
   "types": ["typePatches"],
-  "include": ["src", "svg.d.ts"]
+  "include": ["src", "**/*.ts"]
 }

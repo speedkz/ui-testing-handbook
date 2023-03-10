@@ -1,39 +1,27 @@
-import { User } from "components/icons/User";
+import { formSystem } from "build-system/form";
+import { INotification, Notification } from "components/atomic/Notification";
 import { useRef, useState } from "react";
 import * as yup from "yup";
 import { Button } from "../atomic/Button";
 import { Checkbox } from "../atomic/Checkbox";
-import {
-  BasicForm,
-  EFormItem,
-  IBasicForm,
-  RequiredLabel,
-  TFormFields,
-} from "../atomic/Form";
+import { BasicForm, IBasicForm } from "../atomic/Form";
 import { Logo } from "../atomic/Logo";
-import { Notification } from "components/atomic/Notification";
+import { useNavigate } from "react-router-dom";
+import { login } from "services/auth.service";
+import { AxiosError } from "axios";
 
 export interface ILoginForm {
   username: string;
   password: string;
 }
 
-export const defaultformFields: TFormFields<ILoginForm> = {
-  username: {
-    label: RequiredLabel("user name"),
-    component: EFormItem.INPUT,
-    prependIcon: <User />,
-  },
-  password: {
-    label: RequiredLabel("password"),
-    component: EFormItem.PASSWORD,
-  },
-};
+export const defaultformFields = formSystem().login;
 
-export const LoginForm = (props: ILoginForm) => {
+export const LoginForm = () => {
   const notiRef = useRef(null);
   const [remember, setRemember] = useState(false);
   const [formFields, setFormFields] = useState(defaultformFields);
+  const navigate = useNavigate();
   const schema = yup
     .object({
       username: yup.string().required(),
@@ -42,10 +30,18 @@ export const LoginForm = (props: ILoginForm) => {
     .required();
 
   const submit = (value) => {
-    if (notiRef.current) {
-      (notiRef.current as any).notify();
-    }
-    console.log(value);
+    login(value)
+      .then(() => {
+        if (notiRef.current) {
+          (notiRef.current as INotification).success();
+        }
+        navigate("/shipping-order");
+      })
+      .catch((err: AxiosError) => {
+        if (notiRef.current) {
+          (notiRef.current as INotification).error(err.status, err.message);
+        }
+      });
   };
 
   return (

@@ -1,14 +1,9 @@
 import { Button } from "components/atomic/Button";
-import {
-  BasicForm,
-  EFormItem,
-  IBasicForm,
-  RequiredLabel,
-  TFormFields,
-} from "components/atomic/Form";
 import { useRef, useState } from "react";
 import * as yup from "yup";
 import { Notification } from "components/atomic/Notification";
+import { TFormFields, EFormItem, RequiredLabel } from "build-system/form";
+import { BasicForm, IBasicForm } from "components/atomic/Form";
 
 export interface IVehicleTypeForm {
   name: string;
@@ -21,7 +16,7 @@ export const defaultformFields: TFormFields<IVehicleTypeForm> = {
   },
 };
 
-export const VehicleTypeForm = (props: IVehicleTypeForm) => {
+export const VehicleTypeForm = () => {
   const notiRef = useRef(null);
   const [formFields, setFormFields] = useState(defaultformFields);
   const schema = yup

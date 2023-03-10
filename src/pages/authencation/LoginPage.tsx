@@ -1,7 +1,9 @@
+import { Button } from "components/atomic/Button";
+import { Input } from "components/atomic/Input";
 import { Link } from "react-router-dom";
 import { apis } from "services";
 
-const LoginPage = ({ loading }) => {
+const LoginPage = ({}) => {
   const login = () => {
     return apis.auth.login();
   };
@@ -26,7 +28,7 @@ const LoginPage = ({ loading }) => {
               <label htmlFor="email" className="mb-2 text-sm text-gray-500">
                 Email
               </label>
-              <input
+              <Input
                 id="email"
                 type="text"
                 className="input-basic w-full"
@@ -37,7 +39,7 @@ const LoginPage = ({ loading }) => {
               <label htmlFor="" className="mb-2 text-sm text-gray-500">
                 Password
               </label>
-              <input
+              <Input
                 type="password"
                 className="input-basic w-full"
                 placeholder="Password"
@@ -50,34 +52,34 @@ const LoginPage = ({ loading }) => {
             >
               Forgot Password?
             </Link>
-            <button className="btn bg-rose-700 mb-8" onClick={login}>
+            <Button className="bg-rose-700 mb-8" onClick={login}>
               Sign in
-            </button>
+            </Button>
             <p className="text-sm text-gray-400 text-center mb-4">
               or continue with
             </p>
             <div className="flex gap-3 mb-8">
-              <button className="btn border w-32">
+              <Button className="border w-32">
                 <img
                   className="mx-auto"
                   src={require("assets/images/flat-color-icons_google.png")}
                   alt="google"
                 />
-              </button>
-              <button className="btn border w-32">
+              </Button>
+              <Button className="border w-32">
                 <img
                   className="mx-auto"
                   src={require("assets/images/akar-icons_github-fill.png")}
                   alt="github"
                 />
-              </button>
-              <button className="btn border w-32">
+              </Button>
+              <Button className="border w-32">
                 <img
                   className="mx-auto"
                   src={require("assets/images/bi_facebook.png")}
                   alt="facebook"
                 />
-              </button>
+              </Button>
             </div>
             <div className="text-center">
               <span className="text-gray-400 mr-1 text-sm">
