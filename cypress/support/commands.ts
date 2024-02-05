@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 import { faker } from "@faker-js/faker";
-import { EFormItem, FORM_CONFIGS, IFormItem } from "build-system/form";
+import { EFormItem, FORM_CONFIGS, IFormItem } from "components/core-ui/form";
 
 // ***********************************************
 // This example commands.ts shows you how to

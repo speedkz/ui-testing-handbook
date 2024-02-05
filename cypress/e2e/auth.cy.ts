@@ -1,4 +1,4 @@
-import { formSystem } from "build-system/form";
+import { formSystem } from "components/core-ui/form";
 import { AUTH_APIS } from "services/auth.service";
 import { SAMPLE } from "../../src/sample-data";
 

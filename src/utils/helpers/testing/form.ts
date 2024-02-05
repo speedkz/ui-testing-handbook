@@ -1,10 +1,17 @@
 import { expect } from "@storybook/jest";
 import {
-  getAllByRole, getByRole, userEvent, waitFor
+  getAllByRole,
+  getByRole,
+  userEvent,
+  waitFor,
 } from "@storybook/testing-library";
-import { EFormItem, IFormItem, TFormFields } from "build-system/form";
 import { SELECTORS, USER_EVENTS } from "./constants";
 import { sampleData } from "./generateSampleData";
+import {
+  TFormFields,
+  IFormItem,
+  EFormItem,
+} from "components/core-ui/form/interface";
 
 export const fillForm = async <T>(formFields: TFormFields<T>, canvas) => {
   await sleep();

@@ -1,5 +1,9 @@
 import { initialize, mswDecorator } from "msw-storybook-addon";
-import "../src/setup"
+import { MemoryRouter } from "react-router";
+import { ConfigProvider } from "antd";
+
+import { theme } from "theme";
+import "../src/setup";
 
 initialize();
 
@@ -21,4 +25,13 @@ export const parameters = {
   },
 };
 
-export const decorators = [(Story) => <Story />, mswDecorator];
+export const decorators = [
+  (Story) => (
+    <ConfigProvider theme={theme}>
+      <MemoryRouter initialEntries={["/"]}>
+        <Story />
+      </MemoryRouter>
+    </ConfigProvider>
+  ),
+  mswDecorator,
+];

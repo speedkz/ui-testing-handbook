@@ -1,5 +1,6 @@
 import { userEvent } from "@storybook/testing-library";
-import { EFormItem } from "components/atomic/Form";
+import { EFormItem } from "components/core-ui/form/interface";
+
 export const SELECTORS = {
   [EFormItem.INPUT]: "input",
   [EFormItem.DATE]: "date",

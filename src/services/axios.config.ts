@@ -1,11 +1,11 @@
 import axios, {
   AxiosError,
   AxiosResponse,
-  type AxiosRequestConfig
+  type AxiosRequestConfig,
 } from "axios";
 
 export const axiosIntance = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: process.env.API_URL,
   timeout: 5000,
 });
 
@@ -28,7 +28,7 @@ interface MyAxiosRequestConfig extends AxiosRequestConfig {
 }
 const handleRequestError = async (error: AxiosError): Promise<void> => {
   const config: MyAxiosRequestConfig = error.config || {};
-  if (error.response?.status == 401 && !config._retry) {
+  if (error.response?.status === 401 && !config._retry) {
     const controller = new AbortController();
     const { signal } = controller;
     config._retry = true;

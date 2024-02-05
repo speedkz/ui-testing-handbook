@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { EFormItem, IFormItem } from "components/atomic/Form";
+import { EFormItem, IFormItem } from "components/core-ui/form/interface";
 import { format } from "date-fns";
 
 export const sampleData = (id, item: IFormItem) => {

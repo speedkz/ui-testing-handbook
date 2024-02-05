@@ -1,12 +1,12 @@
-import { FullLayout } from "components/layout/FullLayout";
-import { SimpleLoginPage } from "pages/authencation/SimpleLoginPage";
+import { FullLayout } from "components/core-ui";
+import { LoginPage } from "pages/authencation/LoginPage";
 
 const authRoutes = [
   {
     path: "/",
     element: (
       <FullLayout>
-        <SimpleLoginPage />
+        <LoginPage />
       </FullLayout>
     ),
   },

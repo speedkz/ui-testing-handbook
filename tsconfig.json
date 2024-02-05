@@ -15,7 +15,7 @@
     "noImplicitAny": false,
     "strictNullChecks": true,
     "downlevelIteration": true,
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node", "webpack-env"]
   },
   "exclude": [
     "node_modules",

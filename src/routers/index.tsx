@@ -1,23 +1,22 @@
-import { LoadingScreen } from "components/atomic/LoadingScreen";
 import { FC, LazyExoticComponent, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import planRoutes from "./plan";
-import shippingOrderRoutes from "./shipping-order";
 import authRoutes from "./auth";
+import { TheLoading } from "components/core-ui/loading/TheLoading";
+import orderRoutes from "./order";
 
 export const Loadable = (Component: LazyExoticComponent<FC>) => (props) => {
   return (
-    <Suspense fallback={<LoadingScreen />}>
+    <Suspense fallback={<TheLoading />}>
       <Component {...props} />
     </Suspense>
   );
 };
 
-const router = createBrowserRouter([
-  ...authRoutes,
-  ...planRoutes,
-  ...shippingOrderRoutes,
-]);
+const router = createBrowserRouter([...authRoutes, ...orderRoutes]);
 export const AppRoutes = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<TheLoading />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 };
