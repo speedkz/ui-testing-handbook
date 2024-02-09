@@ -1,18 +1,18 @@
 import { ConfigProvider } from "antd";
 import { AppRoutes } from "routers";
 import { theme } from "theme";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from "react-redux";
+import { store } from "app-redux/store";
 
 // Create a client
-const queryClient = new QueryClient();
 
 function App() {
   return (
-    <ConfigProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <ConfigProvider theme={theme}>
         <AppRoutes />
-      </QueryClientProvider>
-    </ConfigProvider>
+      </ConfigProvider>
+    </Provider>
   );
 }
 

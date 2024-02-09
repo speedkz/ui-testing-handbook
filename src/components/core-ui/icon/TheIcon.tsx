@@ -27,7 +27,7 @@ export const TheIcon = ({
       {...rest}
     >
       <Suspense fallback={null}>
-        <SvgIcon style={{ width: "100%", height: "100%" }} />
+        <SvgIcon />
       </Suspense>
     </div>
   );

@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 
 export const axiosIntance = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: process.env.REACT_APP_API_URL,
   timeout: 5000,
 });
 
@@ -19,7 +19,7 @@ axiosIntance.interceptors.request.use(
 );
 
 axiosIntance.interceptors.response.use(
-  (respone) => respone.data,
+  (respone) => respone,
   (error) => handleRequestError(error)
 );
 

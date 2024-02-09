@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
-declare const Icons: readonly ["Logo"];
+declare const Icons: readonly ["Logo", "Back"];
 export type Icon = (typeof Icons)[number];
 
 export interface IProps extends HTMLAttributes<HTMLDivElement> {
